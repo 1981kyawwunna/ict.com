@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open-Ai | The Importance of Foods</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'gradient': 'gradient 15s ease infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'slideUp': 'slideUp 0.8s ease-out',
+                        'fadeIn': 'fadeIn 1s ease-out',
+                    },
+                    keyframes: {
+                        gradient: {
+                            '0%, 100%': {
+                                'background-size': '400% 400%',
+                                'background-position': '0% 50%'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': '100% 50%'
+                            }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        slideUp: {
+                            '0%': {
+                                opacity: '0',
+                                transform: 'translateY(50px)'
+                            },
+                            '100%': {
+                                opacity: '1',
+                                transform: 'translateY(0)'
+                            }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Smooth Scrolling CSS -->
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .moving-gradient {
+            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #a8edea, #fed6e3, #ffeaa7, #fab1a0, #74b9ff, #a29bfe);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blur-effect {
+            backdrop-filter: blur(8px);
+        }
+
+        /* Fallback animations for elements without AOS */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Button animations */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+    </style>
+</head>
+<body class="moving-gradient min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-effect">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logos -->
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center cursor-pointer" onclick="alert('CAE Private High School')">
+                            <span class="text-white font-bold text-sm"><img src="Untitled_design-removebg-preview.png" alt=""></span>
+                        </div>
+                        <span class="hidden md:block text-gray-700 font-semibold">CAE Private High School</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-10 h-10 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center cursor-pointer" onclick="alert('Open-Ai Team')">
+                            <span class="text-white font-bold text-sm">
+                                <img src="OpenAI-removebg-preview (1).png" alt="open-I LOGO">
+                            </span>
+                        </div>
+                        <span class="hidden md:block text-gray-700 font-semibold">Open-Ai</span>
+                    </div>
+                </div>
+                
+                <!-- Navigation Links -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Home</a>
+                        <a href="#healthy-foods" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Healthy Foods</a>
+                        <a href="#unhealthy-foods" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Unhealthy Foods</a>
+                        <a href="#impacts-healthy" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Impacts of Healthy Foods</a>
+                        <a href="#impacts-unhealthy" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Impacts of Unhealthy Foods</a>
+                        <a href="#optional-foods" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Optional Foods</a>
+                        <a href="#sources" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Sources</a>
+                        <a href="#qa" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Q&A</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="nav-link text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#healthy-foods" class="nav-link text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Healthy Foods</a>
+                <a href="#unhealthy-foods" class="nav-link text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Unhealthy Foods</a>
+                <a href="#impacts-healthy" class="nav-link text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Impacts of Healthy Foods</a>
+                <a href="#impacts-unhealthy" class="nav-link text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Impacts of Unhealthy Foods</a>
+                <a href="#optional-foods" class="nav-link text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Optional Foods</a>
+                <a href="#sources" class="nav-link text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Sources</a>
+                <a href="#qa" class="nav-link text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium">Q&A</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-16 min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-on-scroll" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="inline-flex items-center px-4 py-2 bg-white/30 rounded-full text-sm font-medium text-gray-700 mb-6 blur-effect">
+                        <span class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-bounce-slow"></span>
+                        ICT Project by Open-Ai Team
+                    </div>
+                    <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                        The <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600">Importance</span> of Foods
+                    </h1>
+                    <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                        Discover how nutrition shapes our health, energy, and well-being. Learn the vital differences between healthy and unhealthy foods, and make informed choices for a better life.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="scrollToSection('healthy-foods')" class="btn-primary bg-gradient-to-r from-green-600 to-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-green-700 hover:to-blue-700 transform hover:scale-105 transition duration-300 shadow-lg">
+                            Explore Healthy Foods
+                        </button>
+                        <button onclick="scrollToSection('unhealthy-foods')" class="btn-primary bg-white/30 backdrop-blur-md text-gray-700 px-8 py-4 rounded-xl font-semibold hover:bg-white/40 transform hover:scale-105 transition duration-300 border border-white/20">
+                            Learn About Unhealthy Foods
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 rounded-3xl blur opacity-30 animate-pulse"></div>
+                        <img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?q=80&w=1920&auto=format&fit=crop" 
+                             alt="Healthy foods variety" 
+                             class="relative rounded-3xl shadow-2xl w-full h-96 object-cover animate-float cursor-pointer"
+                             onclick="showImageModal(this)">
+                        <div class="absolute -bottom-6 -left-6 bg-white/90 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-white/20">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-900">100% Natural</p>
+                                    <p class="text-sm text-gray-600">Pure ingredients</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="py-20 bg-white/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Healthy vs Unhealthy Foods</h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">A comprehensive comparison to help you make informed dietary choices</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Healthy Foods -->
+                <div class="animate-on-scroll card-hover" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="bg-green-50 backdrop-blur-md rounded-3xl p-8 border border-green-100 shadow-lg hover:shadow-2xl transition duration-300">
+                        <div class="text-center mb-8">
+                            <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-3xl font-bold text-gray-900">Healthy Foods</h3>
+                            <p class="text-green-600 font-semibold">Nutrient-dense & beneficial</p>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-green-100 hover:bg-white/70 transition duration-300 cursor-pointer" onclick="showInfoModal('Whole Grains', 'Oats, brown rice, and quinoa are excellent sources of fiber and B vitamins, providing steady energy release and supporting digestive health.')">
+                                <h4 class="font-bold text-gray-900 mb-3">Whole Grains</h4>
+                                <ul class="text-gray-700 space-y-2">
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>Oats, brown rice, quinoa</li>
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>High in fiber and B vitamins</li>
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>Steady energy release</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-green-100 hover:bg-white/70 transition duration-300 cursor-pointer" onclick="showInfoModal('Fruits & Vegetables', 'Rich in vitamins A, C, K, antioxidants, and fiber. They support immune function, eye health, and provide essential nutrients for optimal body function.')">
+                                <h4 class="font-bold text-gray-900 mb-3">Fresh Fruits & Vegetables</h4>
+                                <ul class="text-gray-700 space-y-2">
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>Rich in vitamins A, C, K</li>
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>Antioxidants and fiber</li>
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>Support immune system</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-green-100 hover:bg-white/70 transition duration-300 cursor-pointer" onclick="showInfoModal('Lean Proteins', 'Fish, poultry, legumes, and eggs provide essential amino acids for muscle building, tissue repair, and enzyme function.')">
+                                <h4 class="font-bold text-gray-900 mb-3">Lean Proteins</h4>
+                                <ul class="text-gray-700 space-y-2">
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>Fish, poultry, legumes, eggs</li>
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>Essential amino acids</li>
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>Muscle building and repair</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-green-100 hover:bg-white/70 transition duration-300 cursor-pointer" onclick="showInfoModal('Healthy Fats', 'Nuts, seeds, avocado, and olive oil provide omega-3 fatty acids and monounsaturated fats essential for brain and heart health.')">
+                                <h4 class="font-bold text-gray-900 mb-3">Healthy Fats</h4>
+                                <ul class="text-gray-700 space-y-2">
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>Nuts, seeds, avocado, olive oil</li>
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>Omega-3 fatty acids</li>
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>Brain and heart health</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Unhealthy Foods -->
+                <div class="animate-on-scroll card-hover" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="bg-red-50 backdrop-blur-md rounded-3xl p-8 border border-red-100 shadow-lg hover:shadow-2xl transition duration-300">
+                        <div class="text-center mb-8">
+                            <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-3xl font-bold text-gray-900">Unhealthy Foods</h3>
+                            <p class="text-red-600 font-semibold">Processed & nutrient-poor</p>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-red-100 hover:bg-white/70 transition duration-300 cursor-pointer" onclick="showWarningModal('Ultra-Processed Snacks', 'These foods are high in trans fats, added sugars, and artificial additives. They provide empty calories and can lead to weight gain and various health issues.')">
+                                <h4 class="font-bold text-gray-900 mb-3">Ultra-Processed Snacks</h4>
+                                <ul class="text-gray-700 space-y-2">
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>Chips, cookies, candies</li>
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>High in sugar and trans fats</li>
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>Low nutritional value</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-red-100 hover:bg-white/70 transition duration-300 cursor-pointer" onclick="showWarningModal('Fast Food', 'Fast food meals are typically high in calories, unhealthy fats, and sodium. They can contribute to obesity, heart disease, and other chronic health conditions.')">
+                                <h4 class="font-bold text-gray-900 mb-3">Fast Food</h4>
+                                <ul class="text-gray-700 space-y-2">
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>Burgers, fries, fried chicken</li>
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>Excessive calories</li>
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>High in sodium and unhealthy fats</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-red-100 hover:bg-white/70 transition duration-300 cursor-pointer" onclick="showWarningModal('Sugary Beverages', 'Drinks like soda and energy drinks cause rapid blood sugar spikes and crashes. They provide liquid calories that don\'t promote satiety.')">
+                                <h4 class="font-bold text-gray-900 mb-3">Sugary Beverages</h4>
+                                <ul class="text-gray-700 space-y-2">
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>Soda, energy drinks, sweet tea</li>
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>Blood sugar spikes</li>
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>Empty calories</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-red-100 hover:bg-white/70 transition duration-300 cursor-pointer" onclick="showWarningModal('Processed Meats', 'Products like bacon, sausage, and deli meats are high in sodium and preservatives. Regular consumption may increase the risk of certain health conditions.')">
+                                <h4 class="font-bold text-gray-900 mb-3">Processed Meats</h4>
+                                <ul class="text-gray-700 space-y-2">
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>Bacon, sausage, deli meats</li>
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>High sodium and preservatives</li>
+                                    <li class="flex items-center"><span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>Health risks when consumed regularly</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages of Healthy Foods -->
+    <section id="impacts-healthy" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Advantages of Eating Healthy Foods</h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">How nutritious eating transforms your body and mind</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="100" onclick="showInfoModal('Physical Health', 'Maintaining a healthy diet can significantly reduce the risk of chronic diseases, improve immune function, and promote better physical health overall.')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg">
+                        <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Improved Physical Health</h3>
+                        <ul class="text-gray-700 space-y-2">
+                            <li>• Lower risk of heart disease and stroke</li>
+                            <li>• Better weight management</li>
+                            <li>• Stronger immune system</li>
+                            <li>• Enhanced bone health</li>
+                            <li>• Reduced inflammation</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="200" onclick="showInfoModal('Mental Wellness', 'A nutritious diet supports brain function, mood regulation, and can reduce the risk of mental health disorders while improving overall cognitive performance.')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg">
+                        <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 4a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm8 0a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 01-1 1h-4a1 1 0 01-1-1V8zm0 4a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 01-1 1h-4a1 1 0 01-1-1v-2z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Mental Wellness</h3>
+                        <ul class="text-gray-700 space-y-2">
+                            <li>• Better mood regulation</li>
+                            <li>• Reduced anxiety and depression</li>
+                            <li>• Enhanced cognitive function</li>
+                            <li>• Improved memory and focus</li>
+                            <li>• Better sleep quality</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="300" onclick="showInfoModal('Energy & Performance', 'Proper nutrition provides sustained energy levels, enhances athletic performance, and supports faster recovery after exercise.')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg">
+                        <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.736 6.979C9.208 6.193 9.696 6 10 6c.304 0 .792.193 1.264.979C11.69 8.08 12.148 9 12 9c-.148 0-.61-.92-.264-2.021z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Energy & Performance</h3>
+                        <ul class="text-gray-700 space-y-2">
+                            <li>• Sustained energy levels</li>
+                            <li>• Better athletic performance</li>
+                            <li>• Faster recovery after exercise</li>
+                            <li>• Increased productivity</li>
+                            <li>• Enhanced metabolism</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="400" onclick="showInfoModal('Longevity', 'A healthy diet is associated with increased lifespan, reduced risk of chronic diseases, and better quality of life in older age.')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 11-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 012 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 010 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 010-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15 13.586V12a1 1 0 011-1z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Longevity</h3>
+                        <ul class="text-gray-700 space-y-2">
+                            <li>• Reduced risk of chronic diseases</li>
+                            <li>• Longer, healthier lifespan</li>
+                            <li>• Better skin health</li>
+                            <li>• Maintained healthy weight</li>
+                            <li>• Improved quality of life</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="500" onclick="showInfoModal('Social Benefits', 'Healthy eating habits can positively impact relationships, increase confidence, and make you a role model for others in your community.')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg">
+                        <div class="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Social Benefits</h3>
+                        <ul class="text-gray-700 space-y-2">
+                            <li>• Positive impact on relationships</li>
+                            <li>• Increased confidence</li>
+                            <li>• Better social interactions</li>
+                            <li>• Role model for others</li>
+                            <li>• Community involvement</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="600" onclick="showInfoModal('Overall Well-being', 'Good nutrition contributes to better self-esteem, increased life satisfaction, reduced stress, and greater sense of purpose.')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg">
+                        <div class="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-pink-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Overall Well-being</h3>
+                        <ul class="text-gray-700 space-y-2">
+                            <li>• Better self-esteem</li>
+                            <li>• Increased life satisfaction</li>
+                            <li>• Reduced stress levels</li>
+                            <li>• Enhanced creativity</li>
+                            <li>• Greater sense of purpose</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disadvantages of Unhealthy Foods -->
+    <section id="impacts-unhealthy" class="py-20 bg-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Disadvantages of Eating Unhealthy Foods</h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">Understanding the risks associated with poor dietary choices</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="100" onclick="showWarningModal('Physical Health Risks', 'Unhealthy diets can lead to obesity, diabetes, heart disease, high blood pressure, and increased risk of certain cancers.')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg">
+                        <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Physical Health Risks</h3>
+                        <ul class="text-gray-700 space-y-2">
+                            <li>• Increased risk of obesity</li>
+                            <li>• Higher chance of diabetes</li>
+                            <li>• Heart disease and stroke</li>
+                            <li>• High blood pressure</li>
+                            <li>• Certain types of cancer</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="200" onclick="showWarningModal('Mental Health Effects', 'Poor nutrition can negatively affect mental health, leading to mood swings, increased anxiety, depression, and cognitive issues.')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg">
+                        <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Mental Health Effects</h3>
+                        <ul class="text-gray-700 space-y-2">
+                            <li>• Mood swings and irritability</li>
+                            <li>• Increased anxiety and depression</li>
+                            <li>• Poor concentration</li>
+                            <li>• Memory problems</li>
+                            <li>• Sleep disturbances</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="300" onclick="showWarningModal('Energy Issues', 'Unhealthy foods can cause energy crashes, fatigue, poor athletic performance, and decreased productivity.')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Energy & Performance Issues</h3>
+                        <ul class="text-gray-700 space-y-2">
+                            <li>• Energy crashes and fatigue</li>
+                            <li>• Poor athletic performance</li>
+                            <li>• Slow recovery</li>
+                            <li>• Decreased productivity</li>
+                            <li>• Reduced motivation</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="400" onclick="showWarningModal('Digestive Problems', 'Poor diet choices can lead to digestive issues, gut microbiome imbalance, constipation, and acid reflux.')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg">
+                        <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Digestive Problems</h3>
+                        <ul class="text-gray-700 space-y-2">
+                            <li>• Poor digestion and bloating</li>
+                            <li>• Gut microbiome imbalance</li>
+                            <li>• Constipation or diarrhea</li>
+                            <li>• Acid reflux</li>
+                            <li>• Increased food sensitivities</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="500" onclick="showWarningModal('Addiction & Cravings', 'Processed foods can create addictive patterns, leading to sugar addiction, uncontrollable cravings, and emotional eating.')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg">
+                        <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                                <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Addiction & Cravings</h3>
+                        <ul class="text-gray-700 space-y-2">
+                            <li>• Sugar addiction cycles</li>
+                            <li>• Uncontrollable cravings</li>
+                            <li>• Binge eating tendencies</li>
+                            <li>• Emotional eating</li>
+                            <li>• Difficulty changing habits</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="600" onclick="showWarningModal('Long-term Consequences', 'Continued poor eating habits can lead to shortened lifespan, reduced quality of life, and increased healthcare costs.')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg">
+                        <div class="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 2L3 7v11a1 1 0 001 1h3v-7a1 1 0 011-1h4a1 1 0 011 1v7h3a1 1 0 001-1V7l-7-5z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Long-term Consequences</h3>
+                        <ul class="text-gray-700 space-y-2">
+                            <li>• Shortened lifespan</li>
+                            <li>• Reduced quality of life</li>
+                            <li>• Chronic pain and inflammation</li>
+                            <li>• Premature aging</li>
+                            <li>• Healthcare cost burden</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Optional Foods Section -->
+    <section id="optional-foods" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Optional Foods</h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">Foods that can fit into a balanced diet when consumed in moderation</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 mb-16">
+                <!-- Healthy Desserts -->
+                <div class="animate-on-scroll card-hover" data-aos="fade-right" onclick="showInfoModal('Healthy Desserts', 'These nutritious treats provide natural sweetness and beneficial nutrients while satisfying cravings in a healthier way.')">
+                    <div class="bg-green-50 backdrop-blur-md rounded-3xl p-8 border border-green-100 shadow-lg">
+                        <div class="text-center mb-8">
+                            <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 11-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 012 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 010 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 010-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15 13.586V12a1 1 0 011-1z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-3xl font-bold text-gray-900">Healthy Desserts</h3>
+                            <p class="text-green-600 font-semibold">Nutritious sweet treats</p>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-green-100 hover:bg-white/70 transition duration-300">
+                                <h4 class="font-bold text-gray-900 mb-3">Fresh Fruit Parfait</h4>
+                                <p class="text-gray-700">Layer Greek yogurt with fresh berries, granola, and a drizzle of honey.</p>
+                            </div>
+                            
+                            <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-green-100 hover:bg-white/70 transition duration-300">
+                                <h4 class="font-bold text-gray-900 mb-3">Dark Chocolate Avocado Mousse</h4>
+                                <p class="text-gray-700">Blend avocado, cocoa powder, and natural sweeteners for a creamy treat.</p>
+                            </div>
+                            
+                            <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-green-100 hover:bg-white/70 transition duration-300">
+                                <h4 class="font-bold text-gray-900 mb-3">Baked Apples</h4>
+                                <p class="text-gray-700">Core apples, fill with cinnamon and nuts, then bake until tender.</p>
+                            </div>
+                            
+                            <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-green-100 hover:bg-white/70 transition duration-300">
+                                <h4 class="font-bold text-gray-900 mb-3">Chia Seed Pudding</h4>
+                                <p class="text-gray-700">Mix chia seeds with almond milk, vanilla, and top with fresh fruit.</p>
+                            </div>
+                            
+                            <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-green-100 hover:bg-white/70 transition duration-300">
+                                <h4 class="font-bold text-gray-900 mb-3">Homemade Energy Balls</h4>
+                                <p class="text-gray-700">Combine dates, nuts, and seeds for natural sweetness and protein.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Unhealthy Desserts -->
+                <div class="animate-on-scroll card-hover" data-aos="fade-left" onclick="showWarningModal('Unhealthy Desserts', 'These desserts should be consumed sparingly as they are high in unhealthy fats, sugars, and additives that can negatively impact health.')">
+                    <div class="bg-red-50 backdrop-blur-md rounded-3xl p-8 border border-red-100 shadow-lg">
+                        <div class="text-center mb-8">
+                            <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-3xl font-bold text-gray-900">Unhealthy Desserts</h3>
+                            <p class="text-red-600 font-semibold">Limit or avoid these treats</p>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-red-100 hover:bg-white/70 transition duration-300">
+                                <h4 class="font-bold text-gray-900 mb-3">Store-bought Pastries</h4>
+                                <p class="text-gray-700">High in trans fats, refined sugars, and artificial additives.</p>
+                            </div>
+                            
+                            <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-red-100 hover:bg-white/70 transition duration-300">
+                                <h4 class="font-bold text-gray-900 mb-3">Ice Cream (Commercial)</h4>
+                                <p class="text-gray-700">Loaded with saturated fats, sugars, and artificial flavors.</p>
+                            </div>
+                            
+                            <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-red-100 hover:bg-white/70 transition duration-300">
+                                <h4 class="font-bold text-gray-900 mb-3">Candy and Chocolate Bars</h4>
+                                <p class="text-gray-700">Pure sugar with minimal nutritional value and empty calories.</p>
+                            </div>
+                            
+                            <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-red-100 hover:bg-white/70 transition duration-300">
+                                <h4 class="font-bold text-gray-900 mb-3">Deep-fried Desserts</h4>
+                                <p class="text-gray-700">Extremely high in unhealthy fats and calories from frying.</p>
+                            </div>
+                            
+                            <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-red-100 hover:bg-white/70 transition duration-300">
+                                <h4 class="font-bold text-gray-900 mb-3">Sugary Beverages & Smoothies</h4>
+                                <p class="text-gray-700">Liquid calories that don't promote satiety and spike blood sugar.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="py-20 bg-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Video Gallery</h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">Educational videos about healthy and unhealthy foods</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Healthy Food Video -->
+                <a href="https://www.youtube.com/watch?v=xyQY8a-ng6g&list=PPSV">
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="100" onclick="playVideo('healthy')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl overflow-hidden shadow-lg border border-white/20">
+                        <div class="aspect-video bg-gray-200 flex items-center justify-center relative cursor-pointer">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition duration-300">
+                                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <p class="text-gray-600">Healthy Foods Documentary</p>
+                            </div>
+                            <div class="absolute top-4 right-4 bg-green-500 text-white px-2 py-1 rounded-full text-xs">4:53</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">The Power of Healthy Eating</h3>
+                            <p class="text-gray-700">Learn how whole foods can transform your health and energy levels.</p>
+                        </div>
+                    </div>
+                </div>
+                </a>
+                
+                <!-- Unhealthy Food Video -->
+                <a href="https://www.youtube.com/watch?v=7oCLZGg0E4A&t=200s&pp=ygUaaW1wYWN0cyBvZiB1bmhlYWx0aHkgZm9vZHM%3D">
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="200" onclick="playVideo('unhealthy')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl overflow-hidden shadow-lg border border-white/20">
+                        <div class="aspect-video bg-gray-200 flex items-center justify-center relative cursor-pointer">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition duration-300">
+                                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <p class="text-gray-600">Unhealthy Foods Impact</p>
+                            </div>
+                            <div class="absolute top-4 right-4 bg-red-500 text-white px-2 py-1 rounded-full text-xs">6:58</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">The Hidden Dangers</h3>
+                            <p class="text-gray-700">Discover the long-term effects of processed and unhealthy foods.</p>
+                        </div>
+                    </div>
+                </div>
+                </a>
+                
+                <!-- Nutrition Tips Video -->
+                <a href="https://www.youtube.com/watch?v=uan3Aj0bHKc&pp=ygUPbnV0cml0aW9uIGd1aWRl0gcJCQMKAYcqIYzv">
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="300" onclick="playVideo('tips')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl overflow-hidden shadow-lg border border-white/20">
+                        <div class="aspect-video bg-gray-200 flex items-center justify-center relative cursor-pointer">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition duration-300">
+                                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <p class="text-gray-600">Nutrition Guide</p>
+                            </div>
+                            <div class="absolute top-4 right-4 bg-blue-500 text-white px-2 py-1 rounded-full text-xs">7:41</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Reading Nutrition Labels</h3>
+                            <p class="text-gray-700">Learn to decode food labels and make smarter choices.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </section>
+
+    <!-- Nutrition Chart Section -->
+    <section id="nutrition-chart" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Nutrition Benefits Chart</h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">Visual representation of healthy food benefits and impacts</p>
+            </div>
+            
+            <div class="animate-on-scroll bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="border-b border-white/20">
+                                <th class="py-4 px-6 text-gray-900 font-bold">Food Item</th>
+                                <th class="py-4 px-6 text-gray-900 font-bold">Fiber (g)</th>
+                                <th class="py-4 px-6 text-gray-900 font-bold">Protein (g)</th>
+                                <th class="py-4 px-6 text-gray-900 font-bold">Vitamin C (mg)</th>
+                                <th class="py-4 px-6 text-gray-900 font-bold">Iron (mg)</th>
+                                <th class="py-4 px-6 text-gray-900 font-bold">Calcium (mg)</th>
+                                <th class="py-4 px-6 text-gray-900 font-bold">Health Benefits</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-white/10 hover:bg-white/10 transition duration-300 cursor-pointer" onclick="showNutritionModal('Spinach', {fiber: '2.2', protein: '2.9', vitaminC: '28', iron: '2.7', calcium: '99', benefits: 'Eye health, bone strength'})">
+                                <td class="py-4 px-6 font-semibold text-gray-900">Spinach</td>
+                                <td class="py-4 px-6 text-gray-700">2.2</td>
+                                <td class="py-4 px-6 text-gray-700">2.9</td>
+                                <td class="py-4 px-6 text-gray-700">28</td>
+                                <td class="py-4 px-6 text-gray-700">2.7</td>
+                                <td class="py-4 px-6 text-gray-700">99</td>
+                                <td class="py-4 px-6 text-gray-700">Eye health, bone strength</td>
+                            </tr>
+                            <tr class="border-b border-white/10 hover:bg-white/10 transition duration-300 cursor-pointer" onclick="showNutritionModal('Salmon', {fiber: '0', protein: '25', vitaminC: '0', iron: '0.8', calcium: '9', benefits: 'Heart health, brain function'})">
+                                <td class="py-4 px-6 font-semibold text-gray-900">Salmon</td>
+                                <td class="py-4 px-6 text-gray-700">0</td>
+                                <td class="py-4 px-6 text-gray-700">25</td>
+                                <td class="py-4 px-6 text-gray-700">0</td>
+                                <td class="py-4 px-6 text-gray-700">0.8</td>
+                                <td class="py-4 px-6 text-gray-700">9</td>
+                                <td class="py-4 px-6 text-gray-700">Heart health, brain function</td>
+                            </tr>
+                            <tr class="border-b border-white/10 hover:bg-white/10 transition duration-300 cursor-pointer" onclick="showNutritionModal('Blueberries', {fiber: '2.4', protein: '1.1', vitaminC: '9.7', iron: '0.3', calcium: '6', benefits: 'Antioxidants, memory'})">
+                                <td class="py-4 px-6 font-semibold text-gray-900">Blueberries</td>
+                                <td class="py-4 px-6 text-gray-700">2.4</td>
+                                <td class="py-4 px-6 text-gray-700">1.1</td>
+                                <td class="py-4 px-6 text-gray-700">9.7</td>
+                                <td class="py-4 px-6 text-gray-700">0.3</td>
+                                <td class="py-4 px-6 text-gray-700">6</td>
+                                <td class="py-4 px-6 text-gray-700">Antioxidants, memory</td>
+                            </tr>
+                            <tr class="border-b border-white/10 hover:bg-white/10 transition duration-300 cursor-pointer" onclick="showNutritionModal('Quinoa', {fiber: '2.8', protein: '4.4', vitaminC: '0', iron: '1.5', calcium: '17', benefits: 'Complete protein, energy'})">
+                                <td class="py-4 px-6 font-semibold text-gray-900">Quinoa</td>
+                                <td class="py-4 px-6 text-gray-700">2.8</td>
+                                <td class="py-4 px-6 text-gray-700">4.4</td>
+                                <td class="py-4 px-6 text-gray-700">0</td>
+                                <td class="py-4 px-6 text-gray-700">1.5</td>
+                                <td class="py-4 px-6 text-gray-700">17</td>
+                                <td class="py-4 px-6 text-gray-700">Complete protein, energy</td>
+                            </tr>
+                            <tr class="border-b border-white/10 hover:bg-white/10 transition duration-300 cursor-pointer" onclick="showNutritionModal('Almonds', {fiber: '3.5', protein: '6', vitaminC: '0', iron: '1.1', calcium: '76', benefits: 'Heart health, skin care'})">
+                                <td class="py-4 px-6 font-semibold text-gray-900">Almonds</td>
+                                <td class="py-4 px-6 text-gray-700">3.5</td>
+                                <td class="py-4 px-6 text-gray-700">6</td>
+                                <td class="py-4 px-6 text-gray-700">0</td>
+                                <td class="py-4 px-6 text-gray-700">1.1</td>
+                                <td class="py-4 px-6 text-gray-700">76</td>
+                                <td class="py-4 px-6 text-gray-700">Heart health, skin care</td>
+                            </tr>
+                            <tr class="hover:bg-white/10 transition duration-300 cursor-pointer" onclick="showNutritionModal('Greek Yogurt', {fiber: '0', protein: '10', vitaminC: '0.5', iron: '0.1', calcium: '110', benefits: 'Probiotics, bone health'})">
+                                <td class="py-4 px-6 font-semibold text-gray-900">Greek Yogurt</td>
+                                <td class="py-4 px-6 text-gray-700">0</td>
+                                <td class="py-4 px-6 text-gray-700">10</td>
+                                <td class="py-4 px-6 text-gray-700">0.5</td>
+                                <td class="py-4 px-6 text-gray-700">0.1</td>
+                                <td class="py-4 px-6 text-gray-700">110</td>
+                                <td class="py-4 px-6 text-gray-700">Probiotics, bone health</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources Section -->
+    <section id="sources" class="py-20 bg-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Sources</h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">Trusted sources that informed our research</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="100" onclick="openSource('https://www.who.int/initiatives/behealthy')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.148.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">World Health Organization</h3>
+                        <p class="text-gray-700 mb-4">Comprehensive guidelines on nutrition and healthy eating patterns.</p>
+                        <span class="text-blue-600 hover:text-blue-700 font-semibold cursor-pointer">Visit Website →</span>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="200" onclick="openSource('https://www.hsph.harvard.edu/nutritionsource/')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 11-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 012 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 010 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 010-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15 13.586V12a1 1 0 011-1z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Harvard School of Public Health</h3>
+                        <p class="text-gray-700 mb-4">Evidence-based research on nutrition science and dietary patterns.</p>
+                        <span class="text-green-600 hover:text-green-700 font-semibold cursor-pointer">Visit Website →</span>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="300" onclick="openSource('https://www.heart.org/en/healthy-living/healthy-eating')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">American Heart Association</h3>
+                        <p class="text-gray-700 mb-4">Heart-healthy eating recommendations and cardiovascular nutrition.</p>
+                        <span class="text-purple-600 hover:text-purple-700 font-semibold cursor-pointer">Visit Website →</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Q&A Section -->
+    <section id="qa" class="py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Q&A</h2>
+                <p class="text-xl text-gray-700">Frequently asked questions about nutrition and healthy eating</p>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="100" onclick="toggleFAQ(this)">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg cursor-pointer">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-gray-900">How much protein do I need daily?</h3>
+                            <svg class="w-6 h-6 text-gray-600 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <div class="mt-4 text-gray-700 hidden">
+                            The recommended daily protein intake varies by age, weight, and activity level. Generally, adults need about 0.8-1 gram of protein per kilogram of body weight. Athletes and those recovering from illness may need more.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="200" onclick="toggleFAQ(this)">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg cursor-pointer">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-gray-900">Are all fats bad for health?</h3>
+                            <svg class="w-6 h-6 text-gray-600 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <div class="mt-4 text-gray-700 hidden">
+                            No, healthy fats like those found in avocados, nuts, and olive oil are essential for brain function and heart health. It's trans fats and excessive saturated fats that should be limited.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="300" onclick="toggleFAQ(this)">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg cursor-pointer">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-gray-900">How can I reduce sugar intake?</h3>
+                            <svg class="w-6 h-6 text-gray-600 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <div class="mt-4 text-gray-700 hidden">
+                            Start by reading labels, choosing whole fruits over fruit juices, replacing sugary drinks with water, and gradually reducing added sugars in cooking and baking.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="400" onclick="toggleFAQ(this)">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg cursor-pointer">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-gray-900">What makes a food "healthy"?</h3>
+                            <svg class="w-6 h-6 text-gray-600 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <div class="mt-4 text-gray-700 hidden">
+                            Healthy foods are minimally processed, nutrient-dense, and provide essential vitamins, minerals, fiber, and other compounds that support optimal body function.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="500" onclick="toggleFAQ(this)">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg cursor-pointer">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xl font-bold text-gray-900">How important is breakfast?</h3>
+                            <svg class="w-6 h-6 text-gray-600 transform transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <div class="mt-4 text-gray-700 hidden">
+                            Breakfast is important as it kickstarts your metabolism and provides energy for the day. A balanced breakfast with protein and complex carbohydrates is ideal.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 bg-white/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll" data-aos="fade-up">
+                <div class="bg-white/30 backdrop-blur-md rounded-3xl p-12 border border-white/20 shadow-lg">
+                    <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Thank You for Visiting!</h2>
+                    <p class="text-xl text-gray-700 max-w-2xl mx-auto">Your time and attention mean the world to us. We hope this information inspires you to make healthier food choices and live a more vibrant life.</p>
+                    <button onclick="showThankYouModal()" class="mt-6 btn-primary bg-gradient-to-r from-green-600 to-blue-600 text-white px-8 py-3 rounded-xl font-semibold hover:from-green-700 hover:to-blue-700 transform hover:scale-105 transition duration-300 shadow-lg">
+                        Send Thanks
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Team Members -->
+            <div class="text-center mb-12 animate-on-scroll" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">Meet Our Team</h3>
+                <p class="text-gray-700">The brilliant minds behind this project</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Member 1 -->
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="100" onclick="showMemberModal('Alex Johnson', 'Project Lead & Researcher', 'Led the research and coordinated all aspects of this ICT project with passion and dedication.')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg text-center">
+                        <div class="w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-2xl font-bold text-white">B</span>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-2">Bhone Thet Paing</h4>
+                        <p class="text-blue-600 font-semibold mb-4">Project Leader & Researcher</p>
+                        <p class="text-gray-700 mb-6">Led the research and coordinated all aspects of this ICT project with passion and dedication.</p>
+                        <div class="flex justify-center space-x-4">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-blue-200 transition duration-300" onclick="contactMember('Alex Johnson', 'linkedin')">
+                                <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-blue-200 transition duration-300" onclick="contactMember('Alex Johnson', 'twitter')">
+                                <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"></path>
+                                </svg>
+                            </div>
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-blue-200 transition duration-300" onclick="contactMember('Alex Johnson', 'email')">
+                                <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Member 2 -->
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="200" onclick="showMemberModal('Bella Martinez', 'Content Creator & Designer', 'Crafted engaging content and designed beautiful visuals that bring nutrition concepts to life.')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg text-center">
+                        <div class="w-24 h-24 bg-gradient-to-r from-green-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-2xl font-bold text-white">T</span>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-2">Thant Bhone Thit</h4>
+                        <p class="text-green-600 font-semibold mb-4">Powerpoint Designer</p>
+                        <p class="text-gray-700 mb-6">Crafted engaging content and designed a beautiful Powerpoint.</p>
+                        <div class="flex justify-center space-x-4">
+                            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-green-200 transition duration-300" onclick="contactMember('Bella Martinez', 'linkedin')">
+                                <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-green-200 transition duration-300" onclick="contactMember('Bella Martinez', 'twitter')">
+                                <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"></path>
+                                </svg>
+                            </div>
+                            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-green-200 transition duration-300" onclick="contactMember('Bella Martinez', 'email')">
+                                <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Member 3 -->
+                <div class="animate-on-scroll card-hover" data-aos="fade-up" data-aos-delay="300" onclick="showMemberModal('Carlos Chen', 'Web Developer & Animator', 'Built this beautiful website and implemented smooth animations that enhance user experience.')">
+                    <div class="bg-white/30 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-lg text-center">
+                        <div class="w-24 h-24 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-2xl font-bold text-white">H</span>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-2">Htet Myat Lin</h4>
+                        <p class="text-purple-600 font-semibold mb-4">Web Developer & Animator</p>
+                        <p class="text-gray-700 mb-6">Built this beautiful website and implemented smooth animations that enhance user experience.</p>
+                        <div class="flex justify-center space-x-4">
+                            <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-purple-200 transition duration-300" onclick="contactMember('Carlos Chen', 'linkedin')">
+                                <svg class="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-purple-200 transition duration-300" onclick="contactMember('Carlos Chen', 'twitter')">
+                                <svg class="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"></path>
+                                </svg>
+                            </div>
+                            <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center cursor-pointer hover:bg-purple-200 transition duration-300" onclick="contactMember('Carlos Chen', 'email')">
+                                <svg class="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16 animate-on-scroll" data-aos="fade-up" data-aos-delay="400">
+                <p class="text-gray-700 mb-4">© 2025 Open-Ai Team. Created with ❤️ for education.</p>
+                <p class="text-gray-600">This project is for educational purposes only. Always consult healthcare professionals for personalized nutrition advice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Info Modal -->
+    <div id="infoModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-3xl p-8 max-w-md mx-4 transform transition-all">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4" id="infoModalTitle">Information</h3>
+                <p class="text-gray-700 mb-6" id="infoModalContent">Content goes here</p>
+                <button onclick="closeModal('infoModal')" class="bg-green-600 text-white px-6 py-2 rounded-xl hover:bg-green-700 transition duration-300">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Warning Modal -->
+    <div id="warningModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-3xl p-8 max-w-md mx-4 transform transition-all">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4" id="warningModalTitle">Warning</h3>
+                <p class="text-gray-700 mb-6" id="warningModalContent">Content goes here</p>
+                <button onclick="closeModal('warningModal')" class="bg-red-600 text-white px-6 py-2 rounded-xl hover:bg-red-700 transition duration-300">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nutrition Modal -->
+    <div id="nutritionModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-3xl p-8 max-w-lg mx-4 transform transition-all">
+            <div class="text-center">
+                <h3 class="text-xl font-bold text-gray-900 mb-4" id="nutritionModalTitle">Nutrition Info</h3>
+                <div id="nutritionModalContent" class="text-left space-y-4">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+                <button onclick="closeModal('nutritionModal')" class="mt-6 bg-blue-600 text-white px-6 py-2 rounded-xl hover:bg-blue-700 transition duration-300">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Member Modal -->
+    <div id="memberModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-3xl p-8 max-w-md mx-4 transform transition-all">
+            <div class="text-center">
+                <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-2xl font-bold text-white" id="memberModalInitial">A</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2" id="memberModalName">Member Name</h3>
+                <p class="text-blue-600 font-semibold mb-4" id="memberModalRole">Role</p>
+                <p class="text-gray-700 mb-6" id="memberModalDescription">Description</p>
+                <button onclick="closeModal('memberModal')" class="bg-blue-600 text-white px-6 py-2 rounded-xl hover:bg-blue-700 transition duration-300">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thank You Modal -->
+    <div id="thankYouModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-3xl p-8 max-w-md mx-4 transform transition-all">
+            <div class="text-center">
+                <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Thank You!</h3>
+                <p class="text-gray-700 mb-6">Your appreciation means everything to our team. Keep learning and stay healthy!</p>
+                <button onclick="closeModal('thankYouModal')" class="bg-gradient-to-r from-green-600 to-blue-600 text-white px-6 py-2 rounded-xl hover:from-green-700 hover:to-blue-700 transition duration-300">You're Welcome!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-3xl p-4 max-w-4xl w-full mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-900" id="videoModalTitle">Video Title</h3>
+                <button onclick="closeModal('videoModal')" class="text-gray-600 hover:text-gray-800">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="aspect-video bg-gray-200 rounded-2xl flex items-center justify-center">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <p class="text-gray-600">Video would play here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize AOS
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-out',
+                once: true,
+                offset: 50
+            });
+        });
+
+        // Initialize scroll animations
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Smooth scrolling function
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Modal functions
+        function showInfoModal(title, content) {
+            document.getElementById('infoModalTitle').textContent = title;
+            document.getElementById('infoModalContent').textContent = content;
+            document.getElementById('infoModal').classList.remove('hidden');
+        }
+
+        function showWarningModal(title, content) {
+            document.getElementById('warningModalTitle').textContent = title;
+            document.getElementById('warningModalContent').textContent = content;
+            document.getElementById('warningModal').classList.remove('hidden');
+        }
+
+        function showNutritionModal(food, nutrients) {
+            document.getElementById('nutritionModalTitle').textContent = `${food} - Nutritional Information`;
+            document.getElementById('nutritionModalContent').innerHTML = `
+                <div class="grid grid-cols-2 gap-4">
+                    <div><strong>Fiber:</strong> ${nutrients.fiber}g</div>
+                    <div><strong>Protein:</strong> ${nutrients.protein}g</div>
+                    <div><strong>Vitamin C:</strong> ${nutrients.vitaminC}mg</div>
+                    <div><strong>Iron:</strong> ${nutrients.iron}mg</div>
+                    <div class="col-span-2"><strong>Calcium:</strong> ${nutrients.calcium}mg</div>
+                    <div class="col-span-2"><strong>Benefits:</strong> ${nutrients.benefits}</div>
+                </div>
+            `;
+            document.getElementById('nutritionModal').classList.remove('hidden');
+        }
+
+        function showMemberModal(name, role, description) {
+            document.getElementById('memberModalName').textContent = name;
+            document.getElementById('memberModalRole').textContent = role;
+            document.getElementById('memberModalDescription').textContent = description;
+            document.getElementById('memberModalInitial').textContent = name.charAt(0);
+            document.getElementById('memberModal').classList.remove('hidden');
+        }
+
+        function showThankYouModal() {
+            document.getElementById('thankYouModal').classList.remove('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        // FAQ toggle
+        function toggleFAQ(element) {
+            const content = element.querySelector('.hidden');
+            const icon = element.querySelector('svg');
+            
+            if (content) {
+                content.classList.toggle('hidden');
+                icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+            }
+        }
+
+        // Video functions
+        function playVideo(type) {
+            const titles = {
+                'healthy': 'The Power of Healthy Eating',
+                'unhealthy': 'The Hidden Dangers of Unhealthy Foods',
+                'tips': 'Reading Nutrition Labels'
+            };
+            
+            document.getElementById('videoModalTitle').textContent = titles[type];
+            document.getElementById('videoModal').classList.remove('hidden');
+        }
+
+        // Contact functions
+        function contactMember(name, platform) {
+            alert(`Contacting ${name} via ${platform}! (This is a demo)`);
+        }
+
+        // Source functions
+        function openSource(url) {
+            window.open(url, '_blank');
+        }
+
+        // Image modal
+        function showImageModal(img) {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50';
+            modal.innerHTML = `
+                <div class="max-w-4xl max-h-full p-4">
+                    <img src="${img.src}" alt="${img.alt}" class="max-w-full max-h-full object-contain rounded-lg">
+                    <button onclick="this.parentElement.parentElement.remove()" class="absolute top-4 right-4 text-white text-2xl">&times;</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // Add active nav link highlighting
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section[id]');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('text-blue-600', 'font-bold');
+                link.classList.add('text-gray-700');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.remove('text-gray-700');
+                    link.classList.add('text-blue-600', 'font-bold');
+                }
+            });
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('#home');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initScrollAnimations();
+            
+            // Add loading animation
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease-in-out';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Add card hover effects
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
